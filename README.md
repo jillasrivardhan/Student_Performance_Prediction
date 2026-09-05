@@ -1,71 +1,117 @@
 # 🎓 Student Performance Prediction
 
-A machine learning classification project that predicts a student's **final grade category** based on academic, behavioral, and lifestyle-related factors.
+A machine learning classification project that predicts a student's **final academic grade** using academic, behavioral, and lifestyle-related factors.
 
-The project demonstrates an end-to-end machine learning workflow using **Python and Scikit-learn**, including data preprocessing, exploratory data analysis, categorical encoding, feature scaling, Logistic Regression, model evaluation, cross-validation, and comparison of multiple classification algorithms.
+The project demonstrates an end-to-end machine learning workflow using **Python, Pandas, Scikit-learn, and Streamlit**, including data preprocessing, exploratory data analysis, feature engineering, model training, evaluation, cross-validation, model comparison, and deployment through an interactive web application.
 
 ---
 
-## 📌 Project Overview
+## 🚀 Project Overview
 
-Student performance can be influenced by several factors, including attendance, study habits, sleep, extracurricular activities, internet access, part-time employment, and examination performance.
+Student academic performance can be influenced by several factors such as:
 
-The objective of this project is to use these student-related features to build machine learning models capable of predicting the student's **final grade category**.
+* Study time
+* Attendance
+* Previous academic performance
+* Final examination score
+* Sleep duration
+* Parental education
+* Internet access
+* Extracurricular activities
+* Part-time employment
+* Gender
 
-### Machine Learning Workflow
+This project uses these features to build a machine learning classification system capable of predicting a student's final grade category.
+
+### 🎯 Prediction Classes
+
+| Encoded Class | Grade |
+| ------------: | :---: |
+|           `0` |   A   |
+|           `1` |   B   |
+|           `2` |   C   |
+|           `3` |   D   |
+|           `4` |   F   |
+
+---
+
+## ✨ Features
+
+* 📊 Exploratory Data Analysis
+* 🧹 Data preprocessing and cleaning
+* 🔢 Binary categorical encoding
+* 🏷️ Target label encoding
+* 🔄 Automatic numerical/categorical feature detection
+* 🛠️ Missing-value imputation
+* 📏 Numerical feature scaling
+* 🔠 One-hot encoding
+* 🔗 Scikit-learn preprocessing pipeline
+* 🤖 Multiple classification algorithms
+* 📈 Accuracy evaluation
+* 📋 Classification report
+* 🔲 Confusion matrix
+* 🔁 5-fold cross-validation
+* 🌐 Interactive Streamlit application
+* 💾 Saved trained machine-learning model
+
+---
+
+# 🧠 Machine Learning Workflow
 
 ```text
-Student Performance Dataset
-          ↓
-     Data Loading
-          ↓
-  Data Exploration
-          ↓
-    Data Cleaning
-          ↓
-   Feature Encoding
-          ↓
- Feature / Target Split
-          ↓
- Train-Test Split
-          ↓
-Preprocessing Pipeline
-          ↓
-  Model Training
-          ↓
-    Prediction
-          ↓
- Model Evaluation
-          ↓
- Cross-Validation
-          ↓
-Multiple Model Comparison
+                    Student Dataset
+                          │
+                          ▼
+                   Data Exploration
+                          │
+                          ▼
+                    Data Cleaning
+                          │
+                          ▼
+              Feature / Target Separation
+                          │
+                          ▼
+                 Feature Preprocessing
+                    ┌─────┴─────┐
+                    ▼           ▼
+               Numerical    Categorical
+                    │           │
+              Imputation     Imputation
+                    │           │
+                 Scaling    One-Hot Encoding
+                    └─────┬─────┘
+                          ▼
+                 Train-Test Split
+                          │
+                          ▼
+                 Model Training
+                          │
+             ┌────────────┼────────────┐
+             ▼            ▼            ▼
+          Logistic     Random      Gradient
+         Regression     Forest      Boosting
+             │
+             ├── SVM
+             ├── KNN
+             ├── Naive Bayes
+             └── XGBoost
+                          │
+                          ▼
+                  Model Evaluation
+                          │
+                          ▼
+                 Trained Model
+                          │
+                          ▼
+                  Streamlit Web App
+                          │
+                          ▼
+                 Final Grade Prediction
 ```
 
 ---
 
-## 🎯 Objectives
-
-* Explore the student performance dataset
-* Understand the available academic and behavioral features
-* Check for missing values
-* Remove unnecessary identifier columns
-* Convert binary categorical features into numerical values
-* Separate features and target variable
-* Encode the target variable
-* Automatically identify numerical and categorical features
-* Handle missing values using imputation
-* Scale numerical features
-* One-hot encode categorical features
-* Build a reusable Scikit-learn preprocessing pipeline
-* Train a Logistic Regression classifier
-* Evaluate the model using multiple classification metrics
-* Perform 5-fold cross-validation
-* Compare multiple machine learning algorithms
-
----
-
-## 📊 Dataset
+# 📊 Dataset
 
 The project uses:
 
@@ -73,26 +119,28 @@ The project uses:
 student_performance_dataset.csv
 ```
 
+The dataset contains **1,000 student records** and **12 columns**.
+
 ### Dataset Features
 
-The dataset contains student-related information used to predict the final grade.
-
-| Feature                      | Description                                                     |
-| ---------------------------- | --------------------------------------------------------------- |
-| `student_id`                 | Unique identifier for each student                              |
-| `internet_access`            | Whether the student has internet access                         |
-| `extracurricular_activities` | Whether the student participates in extracurricular activities  |
-| `part_time_job`              | Whether the student has a part-time job                         |
-| `sleep_hours`                | Number of hours the student sleeps                              |
-| `attendance_percent`         | Student attendance percentage                                   |
-| `final_exam_score`           | Student's final examination score                               |
-| `final_grade`                | Target variable representing the student's final grade category |
-
-> The exact feature distribution and categories are determined by the supplied dataset.
+| Feature                      | Description                                 | Type        |
+| ---------------------------- | ------------------------------------------- | ----------- |
+| `student_id`                 | Unique student identifier                   | Numerical   |
+| `gender`                     | Student gender                              | Categorical |
+| `study_time_hours`           | Daily study time                            | Numerical   |
+| `attendance_percent`         | Attendance percentage                       | Numerical   |
+| `sleep_hours`                | Daily sleep duration                        | Numerical   |
+| `parental_education`         | Parent's education level                    | Categorical |
+| `internet_access`            | Internet availability                       | Binary      |
+| `extracurricular_activities` | Participation in extracurricular activities | Binary      |
+| `part_time_job`              | Whether the student has a part-time job     | Binary      |
+| `previous_grade`             | Previous academic grade/score               | Numerical   |
+| `final_exam_score`           | Final examination score                     | Numerical   |
+| `final_grade`                | Final grade to predict                      | Target      |
 
 ---
 
-## 🎯 Target Variable
+# 🎯 Target Variable
 
 The target variable is:
 
@@ -100,106 +148,43 @@ The target variable is:
 final_grade
 ```
 
-Since `final_grade` contains categorical values, it is converted into numerical labels using **LabelEncoder** before model training.
+The target contains the following grade categories:
+
+```text
+A
+B
+C
+D
+F
+```
+
+Because machine-learning classifiers work with numerical class labels, the target is transformed using `LabelEncoder`.
 
 ```python
 from sklearn.preprocessing import LabelEncoder
 
 le = LabelEncoder()
+
 y = le.fit_transform(y)
 ```
-
-This allows classification algorithms to work with the target variable.
-
----
-
-# 🔍 Exploratory Data Analysis
-
-The notebook performs several exploratory analysis steps to understand the dataset.
-
-### Dataset Preview
-
-```python
-df.head()
-```
-
-### Dataset Information
-
-```python
-df.info()
-```
-
-### Missing Value Analysis
-
-```python
-df.isnull().sum()
-```
-
-These steps help understand the dataset structure, data types, and potential missing values.
-
----
-
-## 📈 Visualizations
-
-The project uses **Seaborn** to visualize relationships between student characteristics and performance.
-
-### Sleep Hours vs Final Grade
-
-A count plot is used to examine the relationship between sleep hours and final grade.
-
-```python
-sns.countplot(
-    x='sleep_hours',
-    data=df,
-    hue='final_grade'
-)
-```
-
-### Sleep Hours vs Attendance
-
-A scatter plot is used to visualize the relationship between sleep hours and attendance.
-
-```python
-sns.scatterplot(
-    x='sleep_hours',
-    y='attendance_percent',
-    data=df
-)
-```
-
-### Extracurricular Activities vs Final Grade
-
-A count plot is used to compare final grades based on extracurricular participation.
-
-```python
-sns.countplot(
-    x='extracurricular_activities',
-    hue='final_grade',
-    data=df
-)
-```
-
-These visualizations provide an initial understanding of patterns within the dataset.
 
 ---
 
 # 🧹 Data Preprocessing
 
-## 1. Removing the Student ID
+## 1. Removing Identifier
 
-`student_id` is an identifier rather than a meaningful predictive feature, so it is removed:
+The `student_id` column is removed because it is an identifier rather than a meaningful predictive feature.
 
 ```python
 df = df.drop('student_id', axis=1)
 ```
 
-This prevents the model from using an arbitrary identifier during training.
-
 ---
 
-## 2. Encoding Binary Features
+## 2. Binary Encoding
 
-The following columns contain `Yes`/`No` values:
+The following features contain `Yes`/`No` values:
 
 ```text
 internet_access
@@ -214,7 +199,7 @@ Yes → 1
 No  → 0
 ```
 
-Using:
+Implementation:
 
 ```python
 cols = [
@@ -232,9 +217,7 @@ for col in cols:
 
 ---
 
-## 3. Separating Features and Target
-
-The target variable is separated from the input features:
+## 3. Feature and Target Separation
 
 ```python
 X = df.drop('final_grade', axis=1)
@@ -243,28 +226,14 @@ y = df['final_grade']
 
 Where:
 
-* `X` → Input features
-* `y` → Target variable
+* `X` contains the input features
+* `y` contains the target grade
 
 ---
 
-## 4. Target Encoding
+# ⚙️ Preprocessing Pipeline
 
-The categorical target is transformed using `LabelEncoder`:
-
-```python
-le = LabelEncoder()
-
-y = le.fit_transform(y)
-```
-
-This converts the grade categories into numerical class labels.
-
----
-
-# ⚙️ Feature Preprocessing Pipeline
-
-The project automatically separates numerical and categorical features.
+The project automatically identifies numerical and categorical features.
 
 ### Numerical Features
 
@@ -284,19 +253,17 @@ num_enc = Pipeline(steps=[
 This performs:
 
 1. Missing-value imputation using the median
-2. Standardization using `StandardScaler`
+2. Feature standardization
 
 ---
 
 ### Categorical Features
 
-Categorical features are identified using:
-
 ```python
 cat_x = X.select_dtypes(include='object')
 ```
 
-They are processed using:
+Categorical features are processed using:
 
 ```python
 cat_enc = Pipeline(steps=[
@@ -307,14 +274,14 @@ cat_enc = Pipeline(steps=[
 
 This performs:
 
-1. Missing-value imputation using the most frequent value
-2. One-hot encoding of categorical variables
+1. Missing-value imputation
+2. One-hot encoding
 
 ---
 
-## 🧩 ColumnTransformer
+## 🔗 ColumnTransformer
 
-Different preprocessing strategies are applied to numerical and categorical columns using `ColumnTransformer`.
+The different preprocessing strategies are combined using `ColumnTransformer`.
 
 ```python
 preprocessor = ColumnTransformer(
@@ -325,17 +292,17 @@ preprocessor = ColumnTransformer(
 )
 ```
 
-This creates a clean and reusable preprocessing workflow.
+This allows the same preprocessing workflow to be reused consistently during training and prediction.
 
 ---
 
 # 🤖 Machine Learning Models
 
-The project starts with **Logistic Regression** as the primary classification model and then compares it with several other algorithms.
+Several classification algorithms were evaluated.
 
 ## 1. Logistic Regression
 
-The primary model is:
+Logistic Regression was used as the primary classification model.
 
 ```python
 LogisticRegression(
@@ -343,7 +310,7 @@ LogisticRegression(
 )
 ```
 
-The complete pipeline is:
+The complete pipeline:
 
 ```python
 model = Pipeline(steps=[
@@ -354,13 +321,13 @@ model = Pipeline(steps=[
 ])
 ```
 
-`class_weight='balanced'` helps compensate when different target classes have unequal frequencies.
+Using `class_weight='balanced'` helps account for differences in class frequency.
 
 ---
 
-# 🌲 2. Random Forest
+## 2. Random Forest
 
-Random Forest is an ensemble learning algorithm that combines multiple decision trees to make predictions.
+Random Forest combines multiple decision trees to make predictions.
 
 ```python
 RandomForestClassifier(
@@ -368,25 +335,23 @@ RandomForestClassifier(
 )
 ```
 
-It can capture nonlinear relationships between student characteristics and performance.
+It is useful for capturing nonlinear relationships between student characteristics and performance.
 
 ---
 
-# 📈 3. Gradient Boosting
+## 3. Gradient Boosting
 
-Gradient Boosting builds models sequentially, where each new model attempts to improve upon previous errors.
+Gradient Boosting builds models sequentially, with each new model attempting to improve the errors made by previous models.
 
 ```python
 GradientBoostingClassifier()
 ```
 
-It is useful for learning complex relationships in structured datasets.
-
 ---
 
-# 🧠 4. Support Vector Machine
+## 4. Support Vector Machine
 
-The project also evaluates a Support Vector Machine:
+Support Vector Machine was also evaluated.
 
 ```python
 SVC(
@@ -396,64 +361,43 @@ SVC(
 )
 ```
 
-SVM attempts to find decision boundaries that effectively separate different classes.
+SVM attempts to find effective decision boundaries between different grade classes.
 
 ---
 
-# 📍 5. K-Nearest Neighbors
+## 5. K-Nearest Neighbors
 
-KNN predicts the class of a sample based on nearby observations.
+KNN predicts the class of a student based on nearby observations.
 
 ```python
 KNeighborsClassifier()
 ```
 
-It is a simple but useful classification algorithm for comparison.
-
 ---
 
-# 🧮 6. Naive Bayes
+## 6. Gaussian Naive Bayes
 
-The project includes:
+Gaussian Naive Bayes is a probabilistic classification algorithm.
 
 ```python
 GaussianNB()
 ```
 
-Gaussian Naive Bayes assumes that numerical features follow a Gaussian distribution within each class.
-
 ---
 
-# 🚀 7. XGBoost
+## 7. XGBoost
 
-The project also experiments with XGBoost:
+XGBoost was included as a gradient-boosting model for comparison.
 
 ```python
 XGBClassifier()
 ```
 
-XGBoost is a powerful gradient-boosting algorithm commonly used for structured/tabular machine learning problems.
-
 ---
 
-# 🔗 Model Pipeline
+# 📈 Model Evaluation
 
-Each classification algorithm is combined with the same preprocessing pipeline:
-
-```python
-model_pipeline = Pipeline(steps=[
-    ('processing', preprocessor),
-    ('model', algo)
-])
-```
-
-This ensures that preprocessing is performed consistently before the model receives the data.
-
----
-
-# 📊 Model Evaluation
-
-The project evaluates the classification models using:
+The models are evaluated using multiple metrics.
 
 ### Accuracy
 
@@ -461,7 +405,7 @@ The project evaluates the classification models using:
 accuracy_score(y_test, y_pred)
 ```
 
-Accuracy represents the proportion of correctly classified observations.
+Accuracy measures the percentage of correctly classified students.
 
 ```text
 Accuracy =
@@ -486,13 +430,13 @@ classification_report(
 )
 ```
 
-These metrics provide more detailed information than accuracy alone.
+This provides a more detailed understanding of model performance across individual grade classes.
 
 ---
 
 ### Confusion Matrix
 
-The confusion matrix shows how predictions are distributed across the actual classes.
+A confusion matrix is generated to understand how predictions are distributed across the actual grade categories.
 
 ```python
 confusion_matrix(
@@ -501,13 +445,11 @@ confusion_matrix(
 )
 ```
 
-It helps identify which classes the model predicts correctly and which classes it confuses.
-
 ---
 
-# 🔁 5-Fold Cross-Validation
+# 🔁 Cross-Validation
 
-The Logistic Regression pipeline is also evaluated using **5-fold cross-validation**.
+The Logistic Regression pipeline is evaluated using **5-fold cross-validation**.
 
 ```python
 cv = cross_val_score(
@@ -517,112 +459,195 @@ cv = cross_val_score(
     cv=5,
     scoring='accuracy'
 )
-```
 
-The individual scores and mean accuracy are calculated:
-
-```python
 print(f"Cross-Validation Scores: {cv}")
 print(f"Mean Accuracy: {cv.mean():.4f}")
 ```
 
-### How 5-Fold Cross-Validation Works
+### Why Cross-Validation?
+
+Instead of evaluating the model using only one train/test split, 5-fold cross-validation repeatedly trains and validates the model on different portions of the dataset.
 
 ```text
-             Dataset
-                │
-      ┌─────────┼─────────┐
-      ↓         ↓         ↓
-    Fold 1    Fold 2    Fold 3
-      ↓         ↓         ↓
-    Fold 4    Fold 5
-                │
-                ↓
-        Average Performance
+                 Complete Dataset
+                        │
+        ┌───────────────┼───────────────┐
+        ▼               ▼               ▼
+      Fold 1          Fold 2          Fold 3
+        │               │               │
+        └───────────────┼───────────────┘
+                        ▼
+                     Fold 4
+                        │
+                        ▼
+                     Fold 5
+                        │
+                        ▼
+              Average Performance
 ```
 
-The dataset is divided into five parts. The model is trained and validated multiple times using different portions of the data.
-
-This provides a more reliable estimate of model performance than relying on a single train-test split.
+This provides a more robust estimate of model performance.
 
 ---
 
-# 📋 Model Comparison
+# 📋 Algorithms Compared
 
-The project compares the following algorithms:
-
-| Model                  | Type                         |
+| Algorithm              | Category                     |
 | ---------------------- | ---------------------------- |
 | Logistic Regression    | Linear Classification        |
 | Random Forest          | Ensemble Learning            |
 | Gradient Boosting      | Ensemble Learning            |
 | Support Vector Machine | Margin-Based Classification  |
 | K-Nearest Neighbors    | Instance-Based Learning      |
-| Naive Bayes            | Probabilistic Classification |
+| Gaussian Naive Bayes   | Probabilistic Classification |
 | XGBoost                | Gradient Boosting            |
 
-Each model uses the same preprocessing pipeline, making the comparison more consistent.
+All models use the project's preprocessing pipeline where applicable, making the comparison more consistent.
 
 ---
 
-# 🗂️ Project Structure
+# 🌐 Streamlit Web Application
+
+The project includes an interactive **Streamlit** application for making predictions.
+
+The application allows the user to enter:
+
+### Student Information
+
+* Gender
+* Study time
+* Previous grade
+* Parental education
+* Sleep hours
+* Attendance percentage
+
+### Academic Information
+
+* Final examination score
+
+### Activities & Access
+
+* Internet access
+* Extracurricular activities
+* Part-time job
+
+After entering the information, the user can click:
+
+```text
+🔮 Predict Final Grade
+```
+
+The application loads the trained model and displays the predicted grade.
+
+Example:
+
+```text
+🎯 Predicted Final Grade: A
+```
+
+---
+
+# 📸 Application Screenshot
+
+A screenshot of the Streamlit application is available in:
+
+```text
+screenshots/
+└── Screenshot 2026-09-05 193500.png
+```
+
+You can display it on GitHub using:
+
+```markdown
+![Student Performance Prediction App](screenshots/Screenshot%202026-09-05%20193500.png)
+```
+
+---
+
+# 📁 Project Structure
 
 ```text
 Student_Performance_Prediction/
 │
+├── app.py
+│
 ├── student_performance.ipynb
+│
 ├── student_performance_dataset.csv
+│
+├── trained_model.pkl
+│
+├── trained_model.joblib
+│
+├── requirements.txt
+│
+├── screenshots/
+│   └── Screenshot 2026-09-05 193500.png
+│
+├── .gitignore
+│
 └── README.md
 ```
 
----
+### File Description
 
-# 🚀 How to Run the Project
-
-## Option 1 — Google Colab
-
-The notebook is designed to work well with Google Colab.
-
-### Step 1 — Open the Notebook
-
-Upload:
-
-```text
-student_performance.ipynb
-```
-
-to Google Colab.
-
-### Step 2 — Upload the Dataset
-
-Upload:
-
-```text
-student_performance_dataset.csv
-```
-
-to the Colab environment.
-
-### Step 3 — Install XGBoost
-
-If XGBoost is not already available:
-
-```python
-!pip install xgboost
-```
-
-### Step 4 — Run the Notebook
-
-Run the cells sequentially from top to bottom.
+| File                              | Purpose                            |
+| --------------------------------- | ---------------------------------- |
+| `app.py`                          | Streamlit prediction application   |
+| `student_performance.ipynb`       | Complete machine-learning workflow |
+| `student_performance_dataset.csv` | Dataset                            |
+| `trained_model.pkl`               | Saved trained model                |
+| `trained_model.joblib`            | Serialized model file              |
+| `requirements.txt`                | Python dependencies                |
+| `screenshots/`                    | Application screenshots            |
+| `.gitignore`                      | Git ignored files                  |
+| `README.md`                       | Project documentation              |
 
 ---
 
-## Option 2 — Local Jupyter Notebook
+# 🛠️ Technologies Used
 
-Clone the repository:
+### Programming Language
+
+* Python
+
+### Data Processing
+
+* Pandas
+* NumPy
+
+### Data Visualization
+
+* Matplotlib
+* Seaborn
+
+### Machine Learning
+
+* Scikit-learn
+* XGBoost
+
+### Model Persistence
+
+* Joblib
+
+### Web Application
+
+* Streamlit
+
+### Development Environment
+
+* Jupyter Notebook / Google Colab
+* VS Code
+* Git & GitHub
+
+---
+
+# 📦 Installation
+
+## 1. Clone the Repository
 
 ```bash
-git clone https://github.com/jillasrivardhan/Student-Performance-Prediction.git
+git clone https://github.com/your-username/Student-Performance-Prediction.git
 ```
 
 Navigate into the project:
@@ -631,149 +656,206 @@ Navigate into the project:
 cd Student-Performance-Prediction
 ```
 
-Install the required dependencies:
+---
+
+## 2. Create a Virtual Environment
+
+### Windows
 
 ```bash
-pip install numpy pandas matplotlib seaborn scikit-learn xgboost jupyter
+python -m venv venv
 ```
 
-Start Jupyter:
+Activate it:
+
+```powershell
+venv\Scripts\activate
+```
+
+### macOS / Linux
 
 ```bash
-jupyter notebook
+python3 -m venv venv
+source venv/bin/activate
 ```
 
-Open:
+---
+
+## 3. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+# ▶️ Run the Streamlit Application
+
+Start the application using:
+
+```bash
+streamlit run app.py
+```
+
+Streamlit will launch the application in your browser.
+
+---
+
+# 💻 Using the Application
+
+1. Start the Streamlit application.
+2. Enter the student's information.
+3. Select the appropriate categorical values.
+4. Adjust the numerical values using the sliders.
+5. Click **Predict Final Grade**.
+6. View the predicted final grade.
+
+---
+
+# 📓 Running the Jupyter Notebook
+
+The complete machine-learning workflow is available in:
 
 ```text
 student_performance.ipynb
 ```
 
-and execute the cells sequentially.
-
----
-
-# 📦 Requirements
-
-The project uses the following Python libraries:
+The notebook contains:
 
 ```text
-numpy
-pandas
-matplotlib
-seaborn
-scikit-learn
-xgboost
+Data Loading
+    ↓
+Data Exploration
+    ↓
+Data Cleaning
+    ↓
+Visualization
+    ↓
+Feature Engineering
+    ↓
+Preprocessing
+    ↓
+Train-Test Split
+    ↓
+Model Training
+    ↓
+Evaluation
+    ↓
+Cross-Validation
+    ↓
+Model Comparison
 ```
 
-Install everything with:
+If using Google Colab, upload:
+
+```text
+student_performance.ipynb
+student_performance_dataset.csv
+```
+
+Then execute the notebook cells sequentially.
+
+---
+
+# 📌 Requirements
+
+The project uses the following major dependencies:
+
+```text
+streamlit
+pandas==2.2.3
+numpy==2.1.3
+matplotlib
+scikit-learn==1.6.1
+joblib==1.5.3
+```
+
+Install all dependencies with:
 
 ```bash
-pip install numpy pandas matplotlib seaborn scikit-learn xgboost
+pip install -r requirements.txt
 ```
 
 ---
 
-# 🧠 Key Machine Learning Concepts Demonstrated
+# ⚠️ Model Compatibility
 
-This project provides practical experience with:
+The saved model was created using the versions specified in `requirements.txt`.
 
-* Classification
-* Logistic Regression
-* Ensemble Learning
-* Random Forest
-* Gradient Boosting
-* XGBoost
-* Support Vector Machines
-* K-Nearest Neighbors
-* Naive Bayes
-* Exploratory Data Analysis
-* Data Cleaning
-* Feature Engineering
-* Label Encoding
-* One-Hot Encoding
-* Missing Value Imputation
-* Feature Scaling
-* `StandardScaler`
-* `SimpleImputer`
-* `ColumnTransformer`
-* `Pipeline`
-* Train-Test Split
-* Cross-Validation
-* Accuracy
-* Precision
-* Recall
-* F1-Score
-* Confusion Matrix
-* Model Comparison
+For the most reliable results, use the same or compatible versions of:
+
+```text
+scikit-learn
+numpy
+pandas
+joblib
+```
+
+When loading serialized Scikit-learn models, using significantly different Scikit-learn versions can cause compatibility issues.
 
 ---
 
-# 💡 Key Learnings
+# 🔮 Future Improvements
 
-Through this project, I practiced building a complete classification workflow from raw data to model comparison.
+Potential improvements for future versions include:
 
-### Main takeaways
-
-* Understanding how student-related features can be used for classification
-* Handling categorical variables
-* Encoding binary features
-* Encoding categorical target variables
-* Handling missing values
-* Scaling numerical features
-* Building reusable preprocessing pipelines
-* Using `ColumnTransformer`
-* Training multiple classification algorithms
-* Evaluating classification performance
-* Applying cross-validation
-* Comparing different machine learning approaches
-
----
-
-# 🚧 Future Improvements
-
-The project can be extended with:
-
-* Hyperparameter tuning using `GridSearchCV`
-* `RandomizedSearchCV`
-* Feature importance analysis
-* ROC-AUC evaluation
-* Precision-Recall curves
-* Model performance visualization
-* Hyperparameter optimization for XGBoost
-* Class distribution analysis
-* More advanced ensemble techniques
-* Explainable AI using SHAP
-* Saving the best model using Joblib
-* Building a Streamlit prediction interface
-* Deploying the application as a web service
+* [ ] Hyperparameter tuning using `GridSearchCV`
+* [ ] Randomized hyperparameter search
+* [ ] Improved model comparison
+* [ ] ROC-AUC analysis
+* [ ] Interactive confusion matrix
+* [ ] Feature importance visualization
+* [ ] Prediction probability display
+* [ ] Better handling of unseen categorical values
+* [ ] Model versioning
+* [ ] Automated model retraining
+* [ ] Streamlit Cloud deployment
+* [ ] Docker support
+* [ ] Improved UI styling
+* [ ] Explainable AI using SHAP
 
 ---
 
-# ⚠️ Disclaimer
+# 🎓 Learning Outcomes
 
-This project is intended for **educational and machine learning practice purposes**.
+This project demonstrates practical knowledge of:
 
-Student performance is influenced by many academic, personal, social, and environmental factors. Predictions generated by this model should not be treated as definitive assessments of a student's abilities or future performance.
+* Data preprocessing
+* Exploratory data analysis
+* Feature engineering
+* Categorical encoding
+* Numerical scaling
+* Missing-value handling
+* Scikit-learn pipelines
+* ColumnTransformer
+* Classification algorithms
+* Ensemble learning
+* Model evaluation
+* Cross-validation
+* Model serialization
+* Streamlit application development
+* Machine-learning deployment workflow
+
+---
+
+# 📜 Disclaimer
+
+This project is intended for **educational and demonstration purposes**.
+
+The predicted grade should not be considered an official academic assessment or a substitute for evaluation by teachers or educational institutions.
 
 ---
 
 # 👨‍💻 Author
 
-**Jilla Srivardhan**
+**Jilla SriVardhan**
 
-GitHub: [Jilla Srivardhan](https://github.com/jillasrivardhan?utm_source=chatgpt.com)
+This project was created as part of a practical machine-learning and Streamlit development portfolio.
 
 ---
 
-# ⭐ Support
+## ⭐ If You Found This Project Useful
 
-If you found this project useful for learning machine learning and classification, consider giving the repository a ⭐.
+If you found this project helpful or interesting, consider giving the repository a ⭐ on GitHub.
 
-```text
-Data → Preprocessing → Feature Engineering → Classification
-                         ↓
-              Model Evaluation → Cross-Validation
-                         ↓
-                  Model Comparison 🚀
-```
+Contributions, suggestions, and improvements are welcome!
